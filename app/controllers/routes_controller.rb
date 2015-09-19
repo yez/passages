@@ -3,7 +3,6 @@ module Roots
     layout false
 
     def routes
-      render 'routes'
     end
   end
 end
