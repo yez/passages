@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage      = ''
   s.license       = 'MIT'
 
-  s.require_paths = %w(lib models search config)
+  s.require_paths = %w(lib app)
   s.files         = `git ls-files`.split("\n")
   s.test_files    = s.files.grep(/^spec\//)
 
