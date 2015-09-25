@@ -1,9 +1,8 @@
 $LOAD_PATH << File.dirname(__FILE__)
-require 'version'
 
 Gem::Specification.new do |s|
   s.name          = 'roots'
-  s.version       = ''
+  s.version       = '0.0.0'
   s.summary       = %q{}
   s.description   = %q{}
   s.authors       = ['Jake Yesbeck']
