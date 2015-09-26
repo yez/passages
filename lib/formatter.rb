@@ -1,3 +1,5 @@
+require_relative './route'
+
 module Roots
   class Formatter
     def initialize
@@ -5,7 +7,7 @@ module Roots
     end
 
     def section(section)
-      @buffer << section
+      @buffer << Route.new(section)
     end
 
     def section_title(*)
@@ -15,7 +17,7 @@ module Roots
     end
 
     def result
-      @buffer.join("\n")
+      @buffer
     end
 
     def no_routes
