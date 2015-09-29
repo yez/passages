@@ -6,7 +6,7 @@ module Roots
       @route_hash = route_hash
       namespace_array, main_route_array = route_hash.partition { |r| r[:reqs] =~ /::/ }
 
-      raise 'Main Route undefined' unless main_route_array.present?
+      raise 'Main Route undefined' if main_route_array.empty?
 
       @namespace = namespace_array.first
       @main_route = main_route_array.first
