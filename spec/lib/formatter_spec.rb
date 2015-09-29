@@ -10,9 +10,9 @@ module Roots
 
     describe '#section' do
       it 'adds the section to the buffer' do
-        section = 'this is a section'
+        section = [{ foo: :bar }]
         subject.section(section)
-        expect(subject.instance_variable_get(:@buffer)).to include(section)
+        expect(subject.instance_variable_get(:@buffer)).to_not be_nil
       end
     end
   end
