@@ -3,9 +3,9 @@
 <head>
   <title>Roots</title>
 </head>
-<body>
-
-<h1>This is Roots</h1>
-
-</body>
+  <body>
+    <% @route_collection.each do |route| %>
+      <%= render partial: 'route', locals: { route: route } %>
+    <% end %>
+  </body>
 </html>

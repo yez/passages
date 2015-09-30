@@ -1,14 +1,12 @@
-require 'lib/formatter'
+require 'lib/route_collection'
+
 
 module Roots
   class RoutesController < ActionController::Base
     layout false
 
     def routes
-      rails_routes = Rails.application.routes.routes
-      inspector = ActionDispatch::Routing::RoutesInspector.new(rails_routes)
-      formatter = Formatter.new
-      result = inspector.format(formatter)
+      @route_collection = RouteCollection.new(Rails.application.routes.routes)
     end
   end
 end
