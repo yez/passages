@@ -1,6 +1,5 @@
 require 'lib/route_collection'
 
-
 module Roots
   class RoutesController < ActionController::Base
     layout false

@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= stylesheet_link_tag 'roots', media: 'all' %>
   <title>Roots</title>
 </head>
-  <body>
+  <body class='container'>
+    <div class='input-group'>
+      <input class='form-control' type='text'/>
+      <input type='submit' class='input-group-addon'/>
+    </div>
     <% @route_collection.each do |route| %>
       <%= render partial: 'route', locals: { route: route } %>
     <% end %>
