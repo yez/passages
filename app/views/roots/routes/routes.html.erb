@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= stylesheet_link_tag 'roots', media: 'all' %>
+  <%= stylesheet_link_tag 'roots/application', media: 'all' %>
   <title>Roots</title>
 </head>
   <body class='container'>
-    <div class='input-group'>
-      <input class='form-control' type='text'/>
-      <input type='submit' class='input-group-addon'/>
+    <div class='col-xs-6 '>
+      <input class='form-control' type='text' placeholder='Search for...'/>
     </div>
-    <% @route_collection.each do |route| %>
-      <%= render partial: 'route', locals: { route: route } %>
-    <% end %>
+
+    <div class='col-xs-12 vertical-spacer'></div>
+
+    <div class ='col-xs-12 '>
+      <h2>Engine Routes</h2>
+        <% @route_collection.engine_routes.each do |route| %>
+          <%= render partial: 'engine_route', locals: { route: route } %>
+        <% end %>
+
+      <h2>App Routes</h2>
+        <% @route_collection.application_routes.each do |route| %>
+          <%= render partial: 'route', locals: { route: route } %>
+        <% end %>
+
+    </div>
   </body>
 </html>
