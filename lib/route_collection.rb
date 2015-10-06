@@ -2,39 +2,31 @@ module Roots
   class RouteCollection
     include Enumerable
 
-    def initialize(routes)
-      @routes = [].tap do |arr|
-        routes.each do |route|
+    attr_reader :application_routes, :engine_routes
+
+    def initialize(app_routes:, eng_routes: [])
+      @application_routes = []
+      @engine_routes = []
+
+      app_routes.each do |route|
+        wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
+        application_routes << { app: main_app_name, route: wrapped } unless wrapped.internal?
+      end
+
+      eng_routes.each do |eng_hash|
+        eng_hash[:routes].each do |route|
           wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
-          arr << wrapped unless wrapped.internal?
+          engine_routes << { app: eng_hash[:engine], route: wrapped } unless wrapped.internal?
         end
       end
     end
 
     def each(&block)
-      @routes.each(&block)
+      (app_routes + engine_routes).each(&block)
     end
 
-    def engine_routes
-      if @engine_routes.nil?
-        partition_routes
-      end
-
-      @engine_routes
-    end
-
-    def application_routes
-      if @application_routes.nil?
-        partition_routes
-      end
-
-      @application_routes
-    end
-
-    private
-
-    def partition_routes
-      @engine_routes, @application_routes = partition(&:engine?)
+    def main_app_name
+      Rails.application.class.name
     end
   end
 end

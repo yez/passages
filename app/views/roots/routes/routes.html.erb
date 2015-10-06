@@ -13,15 +13,13 @@
 
     <div class ='col-xs-12 '>
       <h2>Engine Routes</h2>
-        <% @route_collection.engine_routes.each do |route| %>
-          <%= render partial: 'engine_route', locals: { route: route } %>
+        <% @route_collection.engine_routes.each do |engine_hash| %>
+          <%= render partial: 'engine_route', locals: { engine_hash: engine_hash } %>
         <% end %>
-
       <h2>App Routes</h2>
-        <% @route_collection.application_routes.each do |route| %>
-          <%= render partial: 'route', locals: { route: route } %>
+        <% @route_collection.application_routes.each do |route_hash| %>
+          <%= render partial: 'route', locals: { route_hash: route_hash } %>
         <% end %>
-
     </div>
   </body>
 </html>

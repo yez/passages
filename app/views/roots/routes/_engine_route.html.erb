@@ -1,3 +1,8 @@
+<%
+  engine = engine_hash[:engine]
+  route = engine_hash[:route]
+%>
+
 <div class='route row'>
   <span class='name col-xs-2'>
     <b>Name:</b>
@@ -5,7 +10,7 @@
   </span>
   <span class='verb col-xs-2'>
     <b>Engine:</b>
-    <%= route.app.app.name %>
+    <%= engine %>
   </span>
   <span class='controller col-xs-2'>
     <b>Controller:</b>
