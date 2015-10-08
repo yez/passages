@@ -9,16 +9,21 @@ module Roots
       @engine_routes = []
 
       app_routes.each do |route|
-        wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
-        application_routes << { app: main_app_name, route: wrapped } unless wrapped.internal?
+        name = main_app_name
+        add_route_to_array(application_routes, route, name)
       end
 
       eng_routes.each do |eng_hash|
         eng_hash[:routes].each do |route|
-          wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
-          engine_routes << { app: eng_hash[:engine], route: wrapped } unless wrapped.internal?
+          name = eng_hash[:engine]
+          add_route_to_array(engine_routes, route, name)
         end
       end
+    end
+
+    def add_route_to_array(array, route, name)
+      wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
+      array << { app: name, route: wrapped } unless wrapped.internal?
     end
 
     def each(&block)
