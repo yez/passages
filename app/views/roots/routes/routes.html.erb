@@ -14,7 +14,12 @@
     <div class ='col-xs-12 '>
       <h2>Engine Routes</h2>
         <% @route_collection.engine_routes.each do |engine_hash| %>
-          <%= render partial: 'engine_route', locals: { engine_hash: engine_hash } %>
+          <div class='row'>
+            <div class='col-xs-12'>
+              <b>Engine:</b> <%= engine_hash[:app] %>
+            </div>
+          </div>
+          <%= render partial: 'route', locals: { route_hash: engine_hash } %>
         <% end %>
       <h2>App Routes</h2>
         <% @route_collection.application_routes.each do |route_hash| %>

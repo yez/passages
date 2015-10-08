@@ -12,7 +12,7 @@ module Roots
 
     def engine_routes
       ::Rails::Engine.subclasses.map do |engine|
-        { engine: engine.class.name, routes: [*engine.routes.routes.routes] }
+        { engine: engine.name, routes: [*engine.routes.routes.routes] }
       end.flatten
     end
 
