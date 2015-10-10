@@ -1,27 +1,10 @@
 <%
-  app = route_hash[:app]
   route = route_hash[:route]
 %>
-
-<div class='route row'>
-  <span class='name col-xs-2'>
-    <b>Name:</b>
-    <%= route.name %>
-  </span>
-  <span class='verb col-xs-1'>
-    <b>Verb:</b>
-    <%= route.verb %>
-  </span>
-  <span class='controller col-xs-3'>
-    <b>Controller:</b>
-    <%= route.controller %>
-  </span>
-  <span class='action col-xs-2'>
-    <b>Action:</b>
-    <%= route.action %>
-  </span>
-  <span class='path col-xs-3'>
-    <b>Path:</b>
-    <%= route.path %>
-  </span>
-</div>
+<tr>
+  <td><%= route.name %></td>
+  <td><%= route.verb %></td>
+  <td><%= route.controller %></td>
+  <td><%= route.action %></td>
+  <td><%= route.path %></td>
+</tr>

@@ -14,17 +14,21 @@
     <div class ='col-xs-12 '>
       <h2>Engine Routes</h2>
         <% @route_collection.engine_routes.each do |engine_hash| %>
-          <div class='row'>
-            <div class='col-xs-12'>
-              <b>Engine:</b> <%= engine_hash[:app] %>
-            </div>
-          </div>
-          <%= render partial: 'route', locals: { route_hash: engine_hash } %>
+          <table class='table table-striped table-bordered'>
+            <tr>
+              <td colspan='5'><b>Engine:</b> <%= engine_hash[:app] %></td>
+            </tr>
+            <%= render partial: 'routes_header' %>
+            <%= render partial: 'route', locals: { route_hash: engine_hash } %>
+          </table>
         <% end %>
       <h2>App Routes</h2>
-        <% @route_collection.application_routes.each do |route_hash| %>
-          <%= render partial: 'route', locals: { route_hash: route_hash } %>
-        <% end %>
+        <table class='table table-striped table-bordered'>
+          <%= render partial: 'routes_header' %>
+          <% @route_collection.application_routes.each do |route_hash| %>
+            <%= render partial: 'route', locals: { route_hash: route_hash } %>
+          <% end %>
+        </table>
     </div>
   </body>
 </html>
