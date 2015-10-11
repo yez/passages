@@ -21,6 +21,10 @@ module Roots
       end
     end
 
+    def attributes_for_display
+      %w[name verb controller action path]
+    end
+
     def add_route_to_array(array, route, name)
       wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
       array << { app: name, route: wrapped } unless wrapped.internal?

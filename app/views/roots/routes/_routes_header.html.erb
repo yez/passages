@@ -1,5 +1,5 @@
 <tr>
-  <% %w[name verb controller action path].each do |header| %>
+  <% collection.attributes_for_display.each do |header| %>
     <th><%= header.titleize %></th>
   <% end %>
 </tr>

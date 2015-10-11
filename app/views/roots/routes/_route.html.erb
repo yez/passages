@@ -2,9 +2,7 @@
   route = route_hash[:route]
 %>
 <tr>
-  <td><%= route.name %></td>
-  <td><%= route.verb %></td>
-  <td><%= route.controller %></td>
-  <td><%= route.action %></td>
-  <td><%= route.path %></td>
+  <% collection.attributes_for_display.each do |attribute| %>
+    <td><%= route.send(attribute) %></td>
+  <% end %>
 </tr>
