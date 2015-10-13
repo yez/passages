@@ -8,7 +8,17 @@ module Roots
       @application_routes = []
       @engine_routes = []
 
-      app_routes.each do |route|
+      app_engine_routes, _app_routes = app_routes.partition do |route|
+        route.app.app.is_a?(Class) &&
+          route.app.app.ancestors.include?(Rails::Engine)
+      end
+
+      app_engine_routes.each do |mount_route|
+        name = mount_route.app.app.name
+        add_route_to_array(engine_routes, mount_route, name)
+      end
+
+      _app_routes.each do |route|
         name = main_app_name
         add_route_to_array(application_routes, route, name)
       end
@@ -27,7 +37,13 @@ module Roots
 
     def add_route_to_array(array, route, name)
       wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
-      array << { app: name, route: wrapped } unless wrapped.internal?
+      return if wrapped.internal?
+
+      if existing = array.find { |a| a[:app] == name }
+        existing[:routes] << wrapped
+      else
+        array << { app: name, routes: [wrapped] }
+      end
     end
 
     def each(&block)

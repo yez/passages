@@ -19,14 +19,18 @@
               <td colspan='5'><b>Engine:</b> <%= engine_hash[:app] %></td>
             </tr>
             <%= render partial: 'routes_header', locals: { collection: @route_collection } %>
-            <%= render partial: 'route', locals: { route_hash: engine_hash, collection: @route_collection } %>
+            <% engine_hash[:routes].each do |route| %>
+              <%= render partial: 'route', locals: { route: route, collection: @route_collection } %>
+            <% end %>
           </table>
         <% end %>
       <h2>App Routes</h2>
         <table class='table table-striped table-bordered'>
           <%= render partial: 'routes_header', locals: { collection: @route_collection } %>
           <% @route_collection.application_routes.each do |route_hash| %>
-            <%= render partial: 'route', locals: { route_hash: route_hash, collection: @route_collection } %>
+            <% route_hash[:routes].each do |route| %>
+              <%= render partial: 'route', locals: { route: route, collection: @route_collection } %>
+            <% end %>
           <% end %>
         </table>
     </div>
