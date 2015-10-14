@@ -9,8 +9,9 @@ module Roots
       @engine_routes = []
 
       app_engine_routes, _app_routes = app_routes.partition do |route|
-        route.app.app.is_a?(Class) &&
-          route.app.app.ancestors.include?(Rails::Engine)
+        app_class = route.try(:app).try(:app)
+        app_class.is_a?(Class) &&
+          app_class.ancestors.include?(Rails::Engine)
       end
 
       app_engine_routes.each do |mount_route|

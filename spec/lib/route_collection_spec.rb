@@ -24,11 +24,10 @@ module Roots
 
       it 'wraps the passed in routes in built in wrapper' do
         expect(subject.instance_variable_get(:@application_routes)).to_not be_empty
-        expect(
-            subject.instance_variable_get(:@application_routes).all? do |route_hash|
-              route_hash[:route].is_a?(ActionDispatch::Routing::RouteWrapper)
-            end
-          ).to eq(true)
+
+        subject.instance_variable_get(:@application_routes).each do |route_hash|
+          expect(route_hash[:routes].all? { |r| r.is_a?(ActionDispatch::Routing::RouteWrapper) }).to eq(true)
+        end
       end
 
       it 'sets the @engine_routes variable' do
@@ -40,11 +39,10 @@ module Roots
 
         it 'wraps the passed in routes in built in wrapper' do
           expect(subject.instance_variable_get(:@engine_routes)).to_not be_empty
-          expect(
-              subject.instance_variable_get(:@engine_routes).all? do |route_hash|
-                route_hash[:route].is_a?(ActionDispatch::Routing::RouteWrapper)
-              end
-            ).to eq(true)
+
+          subject.instance_variable_get(:@engine_routes).each do |route_hash|
+            expect(route_hash[:routes].all? { |r| r.is_a?(ActionDispatch::Routing::RouteWrapper) }).to eq(true)
+          end
         end
       end
 
