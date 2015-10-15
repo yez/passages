@@ -10,9 +10,10 @@ module Roots
 
       app_routes.each do |route|
         app_class = route.try(:app).try(:app)
+
         if app_class.is_a?(Class) && app_class.ancestors.include?(Rails::Engine)
           name = app_class.name
-          add_route_to_array(engine_routes, mount_route, name)
+          add_route_to_array(engine_routes, route, name)
         else
           name = main_app_name
           add_route_to_array(application_routes, route, name)

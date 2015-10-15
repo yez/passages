@@ -16,3 +16,7 @@ module ActionDispatch
     end
   end
 end
+
+module Rails
+  module Engine; end
+end
