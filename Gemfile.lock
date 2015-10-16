@@ -125,6 +125,3 @@ DEPENDENCIES
   pry
   roots!
   rspec
-
-BUNDLED WITH
-   1.10.6
