@@ -1,3 +1,6 @@
+require_relative 'route'
+require_relative 'engine_route'
+
 module Roots
   class RouteCollection
     include Enumerable
@@ -6,24 +9,24 @@ module Roots
 
     def initialize(app_routes:, eng_routes: [])
       @application_routes = []
-      @engine_routes = []
+      @engine_routes = {}
 
       app_routes.each do |route|
         app_class = route.try(:app).try(:app)
 
         if app_class.is_a?(Class) && app_class.ancestors.include?(Rails::Engine)
-          name = app_class.name
-          add_route_to_array(engine_routes, route, name)
+          # name = app_class.name
+          # add_route_to_array(engine_routes, route, name)
         else
           name = main_app_name
-          add_route_to_array(application_routes, route, name)
+          add_route(route, name)
         end
       end
 
       eng_routes.each do |eng_hash|
         eng_hash[:routes].each do |route|
           name = eng_hash[:engine]
-          add_route_to_array(engine_routes, route, name)
+          add_engine_route(route, name)
         end
       end
     end
@@ -38,14 +41,28 @@ module Roots
 
     private
 
-    def add_route_to_array(array, route, name)
-      wrapped = ActionDispatch::Routing::RouteWrapper.new(route)
-      return if wrapped.internal?
+    def add_route(route, name)
+      wrapped = wrap_route(route)
+      return if wrapped.nil?
 
-      if existing = array.find { |a| a[:app] == name }
-        existing[:routes] << wrapped
-      else
-        array << { app: name, routes: [wrapped] }
+      _route = Route.new(wrapped)
+      _route.name = name
+      @application_routes << _route
+    end
+
+    def add_engine_route(route, name)
+      wrapped = wrap_route(route)
+      return if wrapped.nil?
+
+      _route = EngineRoute.new(wrapped)
+      _route.name = name
+      @engine_routes[name] ||= []
+      @engine_routes[name] << _route
+    end
+
+    def wrap_route(route)
+      ActionDispatch::Routing::RouteWrapper.new(route).tap do |route|
+        return nil if route.internal?
       end
     end
 
