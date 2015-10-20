@@ -15,8 +15,8 @@ module Roots
         app_class = route.try(:app).try(:app)
 
         if app_class.is_a?(Class) && app_class.ancestors.include?(Rails::Engine)
-          # name = app_class.name
-          # add_route_to_array(engine_routes, route, name)
+          name = app_class.name
+          add_engine_route(route, name, mount = true)
         else
           name = main_app_name
           add_route(route, name)
@@ -50,12 +50,13 @@ module Roots
       @application_routes << _route
     end
 
-    def add_engine_route(route, name)
+    def add_engine_route(route, name, mount = false)
       wrapped = wrap_route(route)
       return if wrapped.nil?
 
       _route = EngineRoute.new(wrapped)
       _route.name = name
+      _route.mount = mount
       @engine_routes[name] ||= []
       @engine_routes[name] << _route
     end

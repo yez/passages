@@ -47,10 +47,10 @@ module Roots
           end.new
         end
 
-        xit 'adds it to the engine routes for the engine name' do
+        it 'adds it to the engine routes for the engine name' do
           expect_any_instance_of(described_class)
             .to receive(:add_engine_route)
-            .with([], engine_mount_route, 'Class')
+            .with(engine_mount_route, 'Class', mount=true)
 
           described_class.new(app_routes: [engine_mount_route])
         end
