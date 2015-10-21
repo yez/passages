@@ -1,9 +1,10 @@
 module Roots
   class Route
-    attr_accessor :name, :wrapped
+    attr_accessor :app_name
+    attr_reader :wrapped
 
     def initialize(wrapped_route)
-      wrapped = wrapped_route
+      @wrapped = wrapped_route
     end
 
     def name

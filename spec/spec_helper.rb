@@ -1,7 +1,6 @@
 require 'pry'
 require 'action_dispatch/routing/inspector'
 
-
 module ActionDispatch
   module Routing
     class RouteWrapper < SimpleDelegator

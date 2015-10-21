@@ -46,7 +46,7 @@ module Roots
       return if wrapped.nil?
 
       _route = Route.new(wrapped)
-      _route.name = name
+      _route.app_name = name
       @application_routes << _route
     end
 
@@ -55,7 +55,7 @@ module Roots
       return if wrapped.nil?
 
       _route = EngineRoute.new(wrapped)
-      _route.name = name
+      _route.app_name = name
       _route.mount = mount
       @engine_routes[name] ||= []
       @engine_routes[name] << _route
