@@ -54,8 +54,12 @@ module Roots
 
           described_class.new(app_routes: [engine_mount_route])
         end
-      end
 
+        it 'sets the engine_routes[name][:mount]' do
+          subject = described_class.new(app_routes: [engine_mount_route])
+          expect(subject.engine_routes['Class'][:mount]).to be_a(EngineRoute)
+        end
+      end
 
       context 'engine routes are present' do
         subject { described_class.new(app_routes: [fake_route], eng_routes: [{ engine: 'Whatever', routes: [fake_route]}]) }
@@ -63,8 +67,8 @@ module Roots
         it 'initializes routes as Roots::Engine' do
           expect(subject.instance_variable_get(:@engine_routes)).to_not be_empty
 
-          subject.instance_variable_get(:@engine_routes).each do |engine_name, routes|
-            expect(routes.all? { |r| r.is_a?(Roots::EngineRoute) }).to eq(true)
+          subject.instance_variable_get(:@engine_routes).each do |engine_name, engine_hash|
+            expect(engine_hash[:routes].all? { |r| r.is_a?(Roots::EngineRoute) }).to eq(true)
           end
         end
       end

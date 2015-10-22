@@ -54,11 +54,17 @@ module Roots
       wrapped = wrap_route(route)
       return if wrapped.nil?
 
+      @engine_routes[name] ||= {}
+
       _route = EngineRoute.new(wrapped)
       _route.app_name = name
-      _route.mount = mount
-      @engine_routes[name] ||= []
-      @engine_routes[name] << _route
+
+      if mount
+        @engine_routes[name][:mount] = _route
+      else
+        @engine_routes[name][:routes] ||= []
+        @engine_routes[name][:routes] << _route
+      end
     end
 
     def wrap_route(route)

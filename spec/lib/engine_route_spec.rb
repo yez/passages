@@ -8,13 +8,5 @@ module Roots
     it 'inherits from Roots::Route' do
       expect(described_class.ancestors).to include(Roots::Route)
     end
-
-    it 'responds to mount=' do
-      expect(subject).to respond_to(:mount=)
-    end
-
-    it 'responds to mount' do
-      expect(subject).to respond_to(:mount)
-    end
   end
 end
