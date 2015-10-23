@@ -1,5 +1,4 @@
 require_relative 'route'
-require_relative 'engine_route'
 
 module Roots
   class RouteCollection
@@ -56,7 +55,7 @@ module Roots
 
       @engine_routes[name] ||= {}
 
-      _route = EngineRoute.new(wrapped)
+      _route = Route.new(wrapped)
       _route.app_name = name
 
       if mount
