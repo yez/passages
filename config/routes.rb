@@ -1,3 +1,3 @@
 Roots::Engine.routes.draw do
-  get '/' => 'routes#routes'
+  root to: 'routes#routes'
 end
