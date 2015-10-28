@@ -1,5 +1,7 @@
 <tr>
   <% attributes_for_display.each do |attribute| %>
-    <td><%= route.send(attribute) %></td>
+    <td data-search='<%= route.send(attribute) %>' data-matching-attribute='<%=attribute%>'>
+      <%= route.send(attribute) %>
+    </td>
   <% end %>
 </tr>
