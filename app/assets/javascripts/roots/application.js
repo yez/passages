@@ -3,7 +3,16 @@ function clearAndHideResultTable() {
   $('table.matching-term').css('display', 'none');
 }
 
+function hideNoResults() {
+  $('.no-results').hide();
+}
+
+function showNoResults() {
+  $('.no-results').show();
+}
+
 function showResultTable() {
+  hideNoResults();
   $('table.matching-term').css('display', '');
 }
 
@@ -29,12 +38,19 @@ $(document).on('ready', function(){
   $('input[name=search]').keyup(function(event){
     var searchTerm = event.target.value;
     if(searchTerm.length > 0) {
+      hideNoResults();
       var results = searchResults(searchTerm.toLowerCase());
-      $.each(results, function(index, value){
-        addToResultTable($(value).clone());
-      });
+      if (results.length > 0) {
+        $.each(results, function(index, value){
+          addToResultTable($(value).clone());
+        });
+      }
+      else {
+        showNoResults();
+      }
     }
     else {
+      hideNoResults();
       clearAndHideResultTable();
     }
   });

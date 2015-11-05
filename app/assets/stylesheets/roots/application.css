@@ -5,3 +5,8 @@
 .vertical-spacer {
   height: 50px;
 }
+
+.no-results {
+  display: none;
+  color: red;
+}
