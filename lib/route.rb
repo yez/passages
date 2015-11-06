@@ -1,3 +1,5 @@
+require 'active_support/core_ext'
+
 module Roots
   class Route
     attr_accessor :app_name
@@ -7,24 +9,6 @@ module Roots
       @wrapped = wrapped_route
     end
 
-    def name
-      wrapped.name
-    end
-
-    def verb
-      wrapped.verb
-    end
-
-    def controller
-      wrapped.controller
-    end
-
-    def action
-      wrapped.action
-    end
-
-    def path
-      wrapped.path
-    end
+    delegate :name, :verb, :controller, :action, :path, to: :wrapped
   end
 end
