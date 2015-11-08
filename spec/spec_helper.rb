@@ -8,7 +8,7 @@ module ActionDispatch
       [
         :endpoint,
         :constraints,
-        :rack_app
+        :rack_app,
         :verb,
         :path,
         :name,
@@ -16,7 +16,7 @@ module ActionDispatch
         :json_regexp,
         :reqs,
         :controller,
-        :action
+        :action,
         :internal?,
         :engine?
       ].each do |method|
