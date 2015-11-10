@@ -15,10 +15,6 @@ module Roots
       end
     end
 
-    def attributes_for_display
-      %w[name verb controller action path]
-    end
-
     def each(&block)
       routes.each(&block)
     end
