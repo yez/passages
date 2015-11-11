@@ -5,15 +5,14 @@ module Roots
   describe EngineRouteCollection do
     describe '#initialize' do
       let(:fake_route) { Object.new }
+      let(:engine_name) { 'Whatever' }
 
-      subject { described_class.new([{ engine: 'Whatever', routes: [fake_route]}]) }
+      subject { described_class.new(engine_name, [fake_route]) }
 
       it 'initializes routes as Roots::Engine' do
         expect(subject.routes).to_not be_empty
 
-        subject.routes.each do |engine_name, engine_hash|
-          expect(engine_hash[:routes].all? { |r| r.is_a?(Roots::Route) }).to eq(true)
-        end
+        expect(subject.routes.all? { |r| r.is_a?(Roots::Route) }).to eq(true)
       end
     end
   end
