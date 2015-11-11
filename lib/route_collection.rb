@@ -16,7 +16,7 @@ module Roots
     end
 
     def each(&block)
-      routes.each(&block)
+      Array(routes).each(&block)
     end
 
     private

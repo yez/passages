@@ -6,37 +6,28 @@ module Roots
 
     attr_reader :routes
 
-    def initialize(routes)
-      @routes = {}
-      routes.each do |route_hash|
-        route_hash[:routes].each do |route|
-          name = route_hash[:engine]
-          add_route(route, name)
-        end
+    def initialize(engine_name, _routes)
+      _routes.each do |route|
+        add_route(route, engine_name)
       end
     end
 
     def each(&block)
-      routes.each(&block)
+      Array(routes).each(&block)
     end
 
     private
 
-    def add_route(route, name, mount = false)
+    def add_route(route, name)
+      @routes ||= []
+
       wrapped = wrap_route(route)
       return if wrapped.nil?
-
-      routes[name] ||= {}
 
       _route = Route.new(wrapped)
       _route.app_name = name
 
-      if mount
-        routes[name][:mount] = _route
-      else
-        routes[name][:routes] ||= []
-        routes[name][:routes] << _route
-      end
+      routes << _route
     end
 
     def wrap_route(route)
