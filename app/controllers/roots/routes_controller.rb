@@ -19,7 +19,8 @@ module Roots
     end
 
     def application_routes
-      RouteCollection.new([*Rails.application.routes.routes])
+      app_routes = Rails.application.routes.routes
+      RouteCollection.new([*app_routes])
     end
   end
 end

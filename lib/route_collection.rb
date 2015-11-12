@@ -27,7 +27,7 @@ module Roots
 
       _route = Route.new(wrapped)
       _route.app_name = name
-      @routes << _route
+      routes << _route
     end
 
     def wrap_route(route)
