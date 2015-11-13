@@ -14,6 +14,10 @@ module Roots
 
         expect(subject.routes.all? { |r| r.is_a?(Roots::Route) }).to eq(true)
       end
+
+      it 'adds the engine name to each route' do
+        expect(subject.routes.all? { |route| route.app_name == engine_name }).to eq(true)
+      end
     end
   end
 end
