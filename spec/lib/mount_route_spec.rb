@@ -9,17 +9,12 @@ module Roots
       it 'sets the route ivar' do
         expect(subject.instance_variable_get(:@route)).to_not be_nil
       end
-
-      it 'sets the wrapped ivar' do
-        expect(subject.instance_variable_get(:@wrapped)).to_not be_nil
-      end
     end
 
     [:internal?, :path].each do |method|
       describe "##{ method }" do
-        it "calls #{ method } on @wrapped" do
-          expect(subject.instance_variable_get(:@wrapped)).to receive(method)
-          subject.send(method)
+        it "responds to #{ method }" do
+          expect(subject).to respond_to(method)
         end
       end
     end
