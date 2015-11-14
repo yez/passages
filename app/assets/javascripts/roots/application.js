@@ -1,6 +1,7 @@
 function clearAndHideResultTable() {
-  $('table.matching-term').html('');
-  $('table.matching-term').css('display', 'none');
+  var header = $('table.matching-term .header');
+  $('table.matching-term').html(header);
+  $('table.matching-term').hide();
 }
 
 function hideNoResults() {
@@ -13,7 +14,7 @@ function showNoResults() {
 
 function showResultTable() {
   hideNoResults();
-  $('table.matching-term').css('display', '');
+  $('table.matching-term').show();
 }
 
 function searchResults(query) {
