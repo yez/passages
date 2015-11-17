@@ -7,6 +7,7 @@ module Roots
     layout false
 
     def routes
+      @mount_routes = {}
       @engine_routes = engine_routes
       @routes = application_routes
     end
@@ -23,22 +24,32 @@ module Roots
     end
 
     def application_routes
-      mount_routes, app_routes = Rails.application.routes.routes.partition(&method(:mount_route?))
+      app_routes = []
 
-      if mount_routes.present?
-        @mount_routes = {}
-        mount_routes.each do |route|
-          mounted = MountRoute.new(route)
+      Rails.application.routes.routes.each do |route|
+        if mount_class = mount_route_class(route)
+          mounted = MountRoute.new(route, mount_class)
           @mount_routes[mounted.engine_name] = mounted unless mounted.internal?
+        else
+          app_routes << route
         end
       end
 
       RouteCollection.new([*app_routes])
     end
 
-    def mount_route?(route)
-      app_class = route.try(:app).try(:app)
-      app_class.is_a?(Class) && app_class.ancestors.include?(Rails::Engine)
+    def mount_route_class(route)
+      route_app = route.app
+
+      app = if route_app.class == Class
+        route_app
+      else
+        route_app.try(:app)
+      end
+
+      app if app.ancestors.include?(Rails::Engine)
+    rescue
+      false
     end
   end
 end
