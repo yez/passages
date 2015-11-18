@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     roots (0.0.0)
-      rails (>= 4.0.2)
+      rails (>= 4.0)
 
 GEM
   remote: https://rubygems.org/

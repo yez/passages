@@ -7,6 +7,12 @@ module Roots
       allow_any_instance_of(described_class).to receive(:main_app_name) { 'SomeGreatApp' }
     end
 
+    subject { described_class.new([anything]) }
+
+    it 'is behaves like an enumerable' do
+      expect(subject.respond_to?(:each)).to eq(true)
+    end
+
     describe '#initialize' do
       let(:fake_route) { Object.new }
 
