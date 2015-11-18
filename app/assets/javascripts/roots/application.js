@@ -1,7 +1,11 @@
+DomElements = {
+  matchingTerm: 'table.matching-term'
+};
+
 function clearAndHideResultTable() {
   var header = $('table.matching-term .header');
-  $('table.matching-term').html(header);
-  $('table.matching-term').hide();
+  $(DomElements.matchingTerm).html(header);
+  $(DomElements.matchingTerm).hide();
 }
 
 function hideNoResults() {
@@ -14,7 +18,7 @@ function showNoResults() {
 
 function showResultTable() {
   hideNoResults();
-  $('table.matching-term').show();
+  $(DomElements.matchingTerm).show();
 }
 
 function searchResults(query) {
