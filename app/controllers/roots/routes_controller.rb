@@ -7,9 +7,9 @@ module Roots
     layout false
 
     def routes
-      @mount_routes = {}
-      @engine_routes = engine_routes
       @routes = application_routes
+      @engine_routes = engine_routes
+      @mount_routes = mount_routes
     end
 
     private
@@ -26,30 +26,21 @@ module Roots
     def application_routes
       app_routes = []
 
-      Rails.application.routes.routes.each do |route|
-        if mount_class = mount_route_class(route)
-          mounted = MountRoute.new(route, mount_class)
-          @mount_routes[mounted.engine_name] = mounted unless mounted.internal?
-        else
-          app_routes << route
-        end
-      end
+      routes = roots_rails_routes.reject { route.is_a?(MountRoute) }
 
-      RouteCollection.new([*app_routes])
+      RouteCollection.new(routes)
     end
 
-    def mount_route_class(route)
-      route_app = route.app
+    def roots_rails_routes
+      @roots_rails_routes ||= Rails.application.routes.routes.map { |route| Route.new(route) }
+    end
 
-      app = if route_app.class == Class
-        route_app
-      else
-        route_app.try(:app)
+    def mount_routes
+      {}.tap do |mount_routes|
+        roots_rails_routes.each do |route|
+          mount_routes[route.engine_name] = route if route.is_a?(MountRoute)
+        end
       end
-
-      app if app.ancestors.include?(Rails::Engine)
-    rescue
-      false
     end
   end
 end
