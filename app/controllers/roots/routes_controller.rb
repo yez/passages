@@ -1,3 +1,5 @@
+require 'lib/route'
+require 'lib/engine_route'
 require 'lib/mount_route'
 require 'lib/route_collection'
 require 'lib/engine_route_collection'
@@ -15,24 +17,27 @@ module Roots
     private
 
     def engine_routes
-      ::Rails::Engine.subclasses.map do |engine|
-        _engine_routes = EngineRouteCollection.new(engine.name, [*engine.routes.routes.routes])
-        next if _engine_routes.all?(&:internal?)
-
-        { engine: engine.name, routes: _engine_routes }
-      end.compact
+      EngineRouteCollection.new(roots_engine_routes)
     end
 
     def application_routes
       app_routes = []
 
-      routes = roots_rails_routes.reject { route.is_a?(MountRoute) }
+      routes = roots_rails_routes.reject { |route| route.is_a?(MountRoute) }
 
       RouteCollection.new(routes)
     end
 
+    def roots_engine_routes
+      @roots_engine_routes ||= ::Rails::Engine.subclasses.map do |engine|
+        routes = engine.routes.routes.routes.map { |route| EngineRoute.new(route, engine.name) }
+
+        { engine: engine.name, routes: routes }
+      end.compact
+    end
+
     def roots_rails_routes
-      @roots_rails_routes ||= Rails.application.routes.routes.map { |route| Route.new(route) }
+      @roots_rails_routes ||= Rails.application.routes.routes.map { |route| Route.from_raw_route(route) }
     end
 
     def mount_routes
