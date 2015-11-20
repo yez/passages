@@ -10,18 +10,13 @@ module Roots
 
       before do
         allow(fake_route).to receive(:engine_name) { engine_name }
+        allow(fake_route).to receive(:internal?) { false }
       end
 
-      subject { described_class.new([fake_route]) }
-
-      it 'initializes routes as Roots::Engine' do
-        expect(subject.routes).to_not be_empty
-
-        expect(subject.routes.all? { |r| r.is_a?(Roots::Route) }).to eq(true)
-      end
+      subject { described_class.new([{engine: engine_name, routes: [fake_route]}]) }
 
       it 'adds the engine name to each route' do
-        expect(subject.routes.all? { |route| route.engine_name == engine_name }).to eq(true)
+        expect(subject.routes.all? { |route| route[:engine] == engine_name }).to eq(true)
       end
     end
   end
