@@ -21,8 +21,6 @@ module Roots
     end
 
     def application_routes
-      app_routes = []
-
       routes = roots_rails_routes.reject { |route| route.is_a?(MountRoute) }
 
       RouteCollection.new(routes)
