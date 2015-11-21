@@ -1,5 +1,5 @@
-require_relative '../spec_helper'
-require_relative '../../lib/route_collection'
+require_relative '../../spec_helper'
+require_relative '../../../lib/roots/route_collection'
 
 module Roots
   describe RouteCollection do

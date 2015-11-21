@@ -1,5 +1,5 @@
-require_relative '../spec_helper'
-require_relative '../../lib/mount_route'
+require_relative '../../spec_helper'
+require_relative '../../../lib/roots/mount_route'
 
 module Roots
   describe MountRoute do

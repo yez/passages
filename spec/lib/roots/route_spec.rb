@@ -1,5 +1,5 @@
-require_relative '../spec_helper'
-require_relative '../../lib/route'
+require_relative '../../spec_helper'
+require_relative '../../../lib/roots/route'
 
 module Roots
   describe Route do

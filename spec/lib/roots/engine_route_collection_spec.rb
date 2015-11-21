@@ -1,6 +1,6 @@
-require_relative '../spec_helper'
-require_relative '../../lib/engine_route'
-require_relative '../../lib/engine_route_collection'
+require_relative '../../spec_helper'
+require_relative '../../../lib/roots/engine_route'
+require_relative '../../../lib/roots/engine_route_collection'
 
 module Roots
   describe EngineRouteCollection do
