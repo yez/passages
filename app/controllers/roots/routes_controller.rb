@@ -1,8 +1,8 @@
-require 'lib/route'
-require 'lib/engine_route'
-require 'lib/mount_route'
-require 'lib/route_collection'
-require 'lib/engine_route_collection'
+require 'lib/roots/route'
+require 'lib/roots/engine_route'
+require 'lib/roots/mount_route'
+require 'lib/roots/route_collection'
+require 'lib/roots/engine_route_collection'
 
 module Roots
   class RoutesController < ActionController::Base
