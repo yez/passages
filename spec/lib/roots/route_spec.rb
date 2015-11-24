@@ -39,5 +39,26 @@ module Roots
         subject.path
       end
     end
+
+    describe '.from_raw_route' do
+      let(:raw_route) { anything }
+      before { allow(described_class).to receive(:mount_route_class) { mount_class } }
+
+      context 'mount class is present' do
+        let(:mount_class) { anything }
+        it 'instantiates and returns a new MountRoute' do
+          expect(MountRoute).to receive(:new).with(raw_route, mount_class)
+          described_class.from_raw_route(raw_route)
+        end
+      end
+
+      context 'mount class is nil' do
+        let(:mount_class) { nil }
+        it 'instantiates and returns a new Route' do
+          expect(described_class).to receive(:new).with(raw_route)
+          described_class.from_raw_route(raw_route)
+        end
+      end
+    end
   end
 end

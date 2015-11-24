@@ -1,4 +1,5 @@
 require 'active_support/core_ext'
+require_relative 'mount_route'
 
 module Roots
   class Route < DelegateClass(ActionDispatch::Routing::RouteWrapper)
