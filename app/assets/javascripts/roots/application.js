@@ -32,9 +32,7 @@ function addToResultTable(result, searchTerm){
   var lastChild = table.find('tr:last');
 
   $.each(result.children(), function(index, element) {
-    var existing = $(element).html();
-    var bolded = existing.replace(new RegExp("(" + searchTerm + ")", "i"), "<span class='highlighted'>$1</span>");
-    $(element).html(bolded)
+    highlight(element, term);
   });
 
   if(lastChild.length == 0) {
@@ -43,6 +41,12 @@ function addToResultTable(result, searchTerm){
   else {
     lastChild.after(result);
   }
+}
+
+function highlight(element, term) {
+  var existing = $(element).html();
+  var bolded = existing.replace(new RegExp("(" + searchTerm + ")", "i"), "<span class='highlighted'>$1</span>");
+  $(element).html(bolded)
 }
 
 $(document).on('ready', function(){
