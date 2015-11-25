@@ -23,14 +23,20 @@ function showResultTable() {
 
 function searchResults(query) {
   clearAndHideResultTable();
-  var found = $('[data-search*=' + query).parent('tr');
-  return found;
+  return $('[data-search*=' + query).parent('tr');
 }
 
-function addToResultTable(result){
+function addToResultTable(result, searchTerm){
   showResultTable();
   var table = $('.matching-term');
   var lastChild = table.find('tr:last');
+
+  $.each(result.children(), function(index, element) {
+    var existing = $(element).html();
+    var bolded = existing.replace(new RegExp("(" + searchTerm + ")", "i"), "<span class='highlighted'>$1</span>");
+    $(element).html(bolded)
+  });
+
   if(lastChild.length == 0) {
     table.html(result);
   }
@@ -47,7 +53,7 @@ $(document).on('ready', function(){
       var results = searchResults(searchTerm.toLowerCase());
       if (results.length > 0) {
         $.each(results, function(index, value){
-          addToResultTable($(value).clone());
+          addToResultTable($(value).clone(), searchTerm);
         });
       }
       else {

@@ -14,3 +14,8 @@
 .matching-term {
   display: none;
 }
+
+.highlighted {
+  color: #cc6600;
+  font-weight: bold;
+}
