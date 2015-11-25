@@ -39,9 +39,9 @@ module Roots
     end
 
     def mount_routes
-      {}.tap do |mount_routes|
+      {}.tap do |_mount_routes|
         roots_rails_routes.each do |route|
-          mount_routes[route.engine_name] = route if route.is_a?(MountRoute)
+          _mount_routes[route.engine_name] = route if route.is_a?(MountRoute)
         end
       end
     end
