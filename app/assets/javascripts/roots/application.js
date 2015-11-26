@@ -26,13 +26,19 @@ function searchResults(query) {
   return $('[data-search*=' + query).parent('tr');
 }
 
+function highlight(element, term) {
+  var existing = $(element).html();
+  var bolded = existing.replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>");
+  $(element).html(bolded)
+}
+
 function addToResultTable(result, searchTerm){
   showResultTable();
   var table = $('.matching-term');
   var lastChild = table.find('tr:last');
 
   $.each(result.children(), function(index, element) {
-    highlight(element, term);
+    highlight(element, searchTerm);
   });
 
   if(lastChild.length == 0) {
@@ -41,12 +47,6 @@ function addToResultTable(result, searchTerm){
   else {
     lastChild.after(result);
   }
-}
-
-function highlight(element, term) {
-  var existing = $(element).html();
-  var bolded = existing.replace(new RegExp("(" + searchTerm + ")", "i"), "<span class='highlighted'>$1</span>");
-  $(element).html(bolded)
 }
 
 $(document).on('ready', function(){
