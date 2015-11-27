@@ -17,7 +17,7 @@ module Roots
     private
 
     def engine_routes
-      EngineRouteCollection.new(roots_engine_routes)
+      EngineRouteCollection.new(mounted_engine_routes)
     end
 
     def application_routes
@@ -26,8 +26,8 @@ module Roots
       RouteCollection.new(routes)
     end
 
-    def roots_engine_routes
-      @roots_engine_routes ||= ::Rails::Engine.subclasses.map do |engine|
+    def mounted_engine_routes
+      @mounted_engine_routes ||= ::Rails::Engine.subclasses.map do |engine|
         routes = engine.routes.routes.routes.map { |route| EngineRoute.new(route, engine.name) }
 
         { engine: engine.name, routes: routes }
