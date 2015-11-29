@@ -11,6 +11,13 @@ module Roots
       end
     end
 
+    describe '#engine_name' do
+      it 'calls name on the app ivar' do
+        expect(subject.instance_variable_get(:@app)).to receive(:name)
+        subject.engine_name
+      end
+    end
+
     [:internal?, :path].each do |method|
       describe "##{ method }" do
         it "responds to #{ method }" do
