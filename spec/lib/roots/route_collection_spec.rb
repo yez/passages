@@ -31,6 +31,19 @@ module Roots
         it 'does not add it to @routes' do
           expect(subject.routes).to be_empty
         end
+
+        context 'internal and external routes exist' do
+          let(:another_fake_route) { instance_double(Roots::Route) }
+          subject { described_class.new([fake_route, another_fake_route])}
+
+          before do
+            allow(another_fake_route).to receive(:internal?) { false }
+          end
+
+          it 'only adds the external route' do
+            expect(subject.routes).to eq([another_fake_route])
+          end
+        end
       end
     end
   end
