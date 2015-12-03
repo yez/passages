@@ -9,11 +9,5 @@ module Roots
 
       super(ActionDispatch::Routing::RouteWrapper.new(raw_route))
     end
-
-    class << self
-      def attributes_for_display
-        %w[name verb controller action path]
-      end
-    end
   end
 end
