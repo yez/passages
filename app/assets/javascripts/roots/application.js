@@ -14,8 +14,8 @@ function hideNoResults() {
   $('.no-results').hide();
 }
 
-function showNoResults() {
-  $('.no-results').show();
+function showNoResults(searchTerm) {
+  $('.no-results').html('No results match "' + searchTerm + '"').show();
 }
 
 function showResultTable() {
@@ -63,7 +63,7 @@ $(document).on('ready', function(){
         });
       }
       else {
-        showNoResults();
+        showNoResults(searchTerm);
       }
     }
     else {
