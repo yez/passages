@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    roots (0.0.0)
-      rails (>= 4.0)
+    rails_roots (0.0.1)
+      rails (~> 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -122,6 +122,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  pry
-  roots!
-  rspec
+  pry (~> 0.10)
+  rails_roots!
+  rspec (~> 3.2)
