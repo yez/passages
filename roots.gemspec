@@ -3,7 +3,7 @@ $LOAD_PATH << File.dirname(__FILE__)
 require './version'
 
 Gem::Specification.new do |s|
-  s.name          = 'roots'
+  s.name          = 'rails-roots'
   s.version       = Roots::VERSION
   s.summary       = %q{Display and search capabilities for Ruby on Rails routes}
   s.description   = %q{Rails Engine to make internal routes searchable and discoverable for more than just the name of the route. All aspects of a route are searchable from the HTTP verb to the paramters a route supports.}
