@@ -28,5 +28,19 @@ module Roots
         expect(subject.instance_variable_get(:@mount_routes)).to_not be_nil
       end
     end
+
+    describe '!#engine_routes' do
+      it 'calls mounted_engine_routes' do
+        expect(subject).to receive(:mounted_engine_routes) { [] }
+        subject.send(:engine_routes)
+      end
+    end
+
+    describe '!#roots_rails_routes' do
+      it 'calls deep into the Rails routes' do
+        expect(Rails).to receive_message_chain(:application, :routes, :routes) { [] }
+        subject.send(:roots_rails_routes)
+      end
+    end
   end
 end
