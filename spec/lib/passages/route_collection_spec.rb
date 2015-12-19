@@ -1,9 +1,9 @@
 require_relative '../../spec_helper'
-require_relative '../../../lib/roots/route_collection'
+require_relative '../../../lib/passages/route_collection'
 
-module Roots
+module Passages
   describe RouteCollection do
-    let(:fake_route) { instance_double(Roots::Route) }
+    let(:fake_route) { instance_double(Passages::Route) }
 
     before do
       allow_any_instance_of(described_class).to receive(:main_app_name) { 'SomeGreatApp' }
@@ -33,7 +33,7 @@ module Roots
         end
 
         context 'internal and external routes exist' do
-          let(:another_fake_route) { instance_double(Roots::Route) }
+          let(:another_fake_route) { instance_double(Passages::Route) }
           subject { described_class.new([fake_route, another_fake_route])}
 
           before do

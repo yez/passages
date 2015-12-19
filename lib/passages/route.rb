@@ -1,7 +1,7 @@
 require 'active_support/core_ext'
 require_relative 'mount_route'
 
-module Roots
+module Passages
   class Route < DelegateClass(ActionDispatch::Routing::RouteWrapper)
 
     def initialize(route)

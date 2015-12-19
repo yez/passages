@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    roots (0.0.1)
+    passages (0.0.1)
       rails (~> 4.0)
 
 GEM
@@ -115,5 +115,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  roots!
+  passages!
   rspec (~> 3.2)

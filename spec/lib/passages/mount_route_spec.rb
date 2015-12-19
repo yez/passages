@@ -1,7 +1,7 @@
 require_relative '../../spec_helper'
-require_relative '../../../lib/roots/mount_route'
+require_relative '../../../lib/passages/mount_route'
 
-module Roots
+module Passages
   describe MountRoute do
     subject { described_class.new(anything, anything) }
 

@@ -1,7 +1,7 @@
 require_relative '../../spec_helper'
-require_relative '../../../lib/roots/route'
+require_relative '../../../lib/passages/route'
 
-module Roots
+module Passages
   describe Route do
     subject { described_class.new(anything) }
 

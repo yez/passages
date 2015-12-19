@@ -1,6 +1,6 @@
 require_relative 'route'
 
-module Roots
+module Passages
   class RouteCollection
     include Enumerable
 

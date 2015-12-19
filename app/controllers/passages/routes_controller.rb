@@ -1,10 +1,10 @@
-require 'lib/roots/route'
-require 'lib/roots/engine_route'
-require 'lib/roots/mount_route'
-require 'lib/roots/route_collection'
-require 'lib/roots/engine_route_collection'
+require 'lib/passages/route'
+require 'lib/passages/engine_route'
+require 'lib/passages/mount_route'
+require 'lib/passages/route_collection'
+require 'lib/passages/engine_route_collection'
 
-module Roots
+module Passages
   class RoutesController < ActionController::Base
     layout false
 
@@ -21,7 +21,7 @@ module Roots
     end
 
     def application_routes
-      routes = roots_rails_routes.reject { |route| route.is_a?(MountRoute) }
+      routes = passages_rails_routes.reject { |route| route.is_a?(MountRoute) }
 
       RouteCollection.new(routes)
     end
@@ -34,13 +34,13 @@ module Roots
       end.compact
     end
 
-    def roots_rails_routes
-      @roots_rails_routes ||= Rails.application.routes.routes.map { |route| Route.from_raw_route(route) }
+    def passages_rails_routes
+      @passages_rails_routes ||= Rails.application.routes.routes.map { |route| Route.from_raw_route(route) }
     end
 
     def mount_routes
       {}.tap do |_mount_routes|
-        roots_rails_routes.each do |route|
+        passages_rails_routes.each do |route|
           _mount_routes[route.engine_name] = route if route.is_a?(MountRoute)
         end
       end

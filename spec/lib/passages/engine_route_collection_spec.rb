@@ -1,8 +1,8 @@
 require_relative '../../spec_helper'
-require_relative '../../../lib/roots/engine_route'
-require_relative '../../../lib/roots/engine_route_collection'
+require_relative '../../../lib/passages/engine_route'
+require_relative '../../../lib/passages/engine_route_collection'
 
-module Roots
+module Passages
   describe EngineRouteCollection do
     describe '#initialize' do
       let(:fake_route) { instance_double(EngineRoute) }

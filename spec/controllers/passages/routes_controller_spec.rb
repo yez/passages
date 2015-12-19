@@ -2,10 +2,10 @@ require 'spec_helper'
 require 'action_dispatch/routing'
 require 'rails'
 
-require_relative '../../../lib/roots/engine'
-require_relative '../../../app/controllers/roots/routes_controller'
+require_relative '../../../lib/passages/engine'
+require_relative '../../../app/controllers/passages/routes_controller'
 
-module Roots
+module Passages
   describe RoutesController do
 
     describe '#routes' do
@@ -36,10 +36,10 @@ module Roots
       end
     end
 
-    describe '!#roots_rails_routes' do
+    describe '!#passages_rails_routes' do
       it 'calls deep into the Rails routes' do
         expect(Rails).to receive_message_chain(:application, :routes, :routes) { [] }
-        subject.send(:roots_rails_routes)
+        subject.send(:passages_rails_routes)
       end
     end
   end

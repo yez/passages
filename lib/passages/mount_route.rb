@@ -1,4 +1,4 @@
-module Roots
+module Passages
   class MountRoute < DelegateClass(ActionDispatch::Routing::RouteWrapper)
     def initialize(route, app)
       @app = app
