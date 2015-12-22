@@ -1,8 +1,8 @@
-require 'lib/passages/route'
-require 'lib/passages/engine_route'
-require 'lib/passages/mount_route'
-require 'lib/passages/route_collection'
-require 'lib/passages/engine_route_collection'
+require 'passages/route'
+require 'passages/engine_route'
+require 'passages/mount_route'
+require 'passages/route_collection'
+require 'passages/engine_route_collection'
 
 module Passages
   class RoutesController < ActionController::Base

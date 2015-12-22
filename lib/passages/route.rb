@@ -1,4 +1,5 @@
 require 'active_support/core_ext'
+require 'action_dispatch/routing/inspector'
 require_relative 'mount_route'
 
 module Passages
