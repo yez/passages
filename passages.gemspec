@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description   = %q{Rails Engine to make internal routes searchable and discoverable for more than just the name of the route. All aspects of a route are searchable from the HTTP verb to the paramters a route supports.}
   s.authors       = ['Jake Yesbeck']
   s.email         = 'yesbeckjs@gmail.com'
-  s.homepage      = 'https://github.com/yez/roots'
+  s.homepage      = 'https://github.com/yez/passages'
   s.license       = 'MIT'
 
   s.require_paths = %w(lib app)
