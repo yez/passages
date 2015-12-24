@@ -10,5 +10,7 @@ module Passages
   module_function :username, :password
 end
 
-require 'passages/engine'
-require 'controllers/passages/routes_controller'
+if defined? Rails
+  require 'passages/engine'
+  require 'controllers/passages/routes_controller'
+end
