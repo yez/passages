@@ -1,14 +1,7 @@
 module Passages
-  def username
-    ENV['passages_username'] || 'username'
-  end
-
-  def password
-    ENV['passages_password'] || 'password'
-  end
-
-  module_function :username, :password
 end
+
+require './config/initializers/basic_auth_methods'
 
 if defined? Rails
   require 'passages/engine'
