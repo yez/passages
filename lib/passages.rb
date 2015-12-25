@@ -1,7 +1,10 @@
+$LOAD_PATH << File.dirname(__FILE__) + '/../lib'
+$LOAD_PATH << File.dirname(__FILE__) + '/../config'
+
 module Passages
 end
 
-require './config/initializers/basic_auth_methods'
+require 'initializers/basic_auth'
 
 if defined? Rails
   require 'passages/engine'
