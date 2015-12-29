@@ -6,7 +6,9 @@ require 'passages/engine_route_collection'
 
 module Passages
   class RoutesController < ActionController::Base
-    http_basic_authenticate_with name: Passages.username, password: Passages.password
+    unless Passages.no_auth?
+      http_basic_authenticate_with name: Passages.username, password: Passages.password
+    end
 
     layout false
 

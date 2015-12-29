@@ -7,5 +7,13 @@ module Passages
     ENV['passages_password'] || 'password'
   end
 
-  module_function :username, :password
+  def no_auth=(no_auth)
+    @no_auth = no_auth
+  end
+
+  def no_auth?
+    @no_auth.nil? || @no_auth
+  end
+
+  module_function :username, :password, :no_auth=, :no_auth?
 end
