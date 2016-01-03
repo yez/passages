@@ -8,6 +8,10 @@ This Rails Engine adds the ability to search over different attributes of Ruby o
 
 For example, an internal (or very permissive external) API can now expose a single page that will answer simple questions like: *"What was the HTTP verb for the `/users/clear_password` route?"* or *"Does a v2 or v3 version for this route exist?"*.
 
+## Demo
+
+![Demo](demo.gif)
+
 ## Install
 
 In your `Gemfile`
