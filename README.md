@@ -23,13 +23,13 @@ gem 'passages'
 
 `bundle install`
 
-The `Passages` engine will **prepend** a `/passages` route to the application's routes.
+The `Passages` engine will **prepend** a `/passages` route to the application's routes. This means that if a project's `routes.rb` specifically defines a `/passages` route, the `Passages` Engine will not overwrite that.
 
 Visiting `/passages` will display a search box and list of all known routes in an application.
 
 ## Authorization
 
-Since there is no environment dependent checks, the `/passages` page uses configurable http basic authentication.
+Since there are no environment dependent checks, the `/passages` page uses configurable http basic authentication.
 
 Default username: **username**
 
