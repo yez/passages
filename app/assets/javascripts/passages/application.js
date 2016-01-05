@@ -25,7 +25,23 @@ function showResultTable() {
 
 function searchResults(query) {
   clearAndHideResultTable();
-  return $('[data-search*=' + query).parent('tr');
+  var terms = query.split(' ');
+  var parents = [];
+
+  $.each(terms, function(index, el) {
+    if (parents.length == 0) {
+      parents = $('[data-search*=' + el).parent('tr');
+    }
+    else if(el.length > 0) {
+      $.each(parents, function(index, parent) {
+        if($(parent).find($('[data-search*=' + el)).length == 0) {
+          parents[index] = null;
+        }
+      });
+    }
+  });
+
+  return parents
 }
 
 function highlight(element, term) {
