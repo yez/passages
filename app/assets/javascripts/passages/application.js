@@ -30,34 +30,26 @@ function searchResults(query) {
 
   $.each(terms, function(index, el) {
     if (parents.length == 0) {
-      parents = $('[data-search*=' + el).parent('tr');
+      parents = $('[data-search*=' + el + ']').parent('tr');
     }
     else if(el.length > 0) {
       $.each(parents, function(index, parent) {
-        if($(parent).find($('[data-search*=' + el)).length == 0) {
+        if($(parent).find($('[data-search*=' + el + ']')).length == 0) {
           parents[index] = null;
         }
       });
     }
   });
 
+  if (query == 'users a') { debugger }
+
   return parents
 }
 
-function highlight(element, term) {
-  var existing = $(element).html();
-  var bolded = existing.replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>");
-  $(element).html(bolded)
-}
-
-function addToResultTable(result, searchTerm){
+function addToResultTable(result, searchTerms){
   showResultTable();
   var table = $('.matching-term');
   var lastChild = table.find('tr:last');
-
-  $.each(result.children(), function(index, element) {
-    highlight(element, searchTerm);
-  });
 
   if(lastChild.length == 0) {
     table.html(result);
