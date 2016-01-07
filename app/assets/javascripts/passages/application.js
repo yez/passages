@@ -1,13 +1,13 @@
 //= require jquery-2.1.4.min
 
-DomElements = {
+DomElement = {
   matchingTerm: 'table.matching-term'
 };
 
 function clearAndHideResultTable() {
   var header = $('table.matching-term .header');
-  $(DomElements.matchingTerm).html(header);
-  $(DomElements.matchingTerm).hide();
+  $(DomElement.matchingTerm).html(header);
+  $(DomElement.matchingTerm).hide();
 }
 
 function hideNoResults() {
@@ -20,7 +20,7 @@ function showNoResults(searchTerm) {
 
 function showResultTable() {
   hideNoResults();
-  $(DomElements.matchingTerm).show();
+  $(DomElement.matchingTerm).show();
 }
 
 function searchResults(query) {
@@ -41,8 +41,6 @@ function searchResults(query) {
     }
   });
 
-  if (query == 'users a') { debugger }
-
   return parents
 }
 
@@ -50,6 +48,25 @@ function addToResultTable(result, searchTerms){
   showResultTable();
   var table = $('.matching-term');
   var lastChild = table.find('tr:last');
+
+  $.each(searchTerms.split(' '), function(index, term) {
+    if(term.length > 0 ) {
+      $.each(result.find('td'), function(index, element) {
+        if ($(element).find('span').length == 0){
+          var existingHtml = $(element).html();
+          var replacedHtml = existingHtml.replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>");
+          $(element).html(replacedHtml);
+        }
+        else {
+          $.each($('element').contents(), function(index, content) {
+            if(content.nodeType == 3) {
+              $(content).html($(content).html().replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>"));
+            }
+          });
+        }
+      });
+    }
+  });
 
   if(lastChild.length == 0) {
     table.html(result);
