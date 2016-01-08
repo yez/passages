@@ -1,5 +1,28 @@
 //= require jquery-2.1.4.min
 
+var Highlighter  = {
+  highlight: function(result, terms) {
+    $.each(terms.split(' '), function(index, term) {
+      if(term.length > 0 ) {
+        $.each(result.find('td'), function(index, element) {
+          if ($(element).find('span').length == 0){
+            var existingHtml = $(element).html();
+            var replacedHtml = existingHtml.replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>");
+            $(element).html(replacedHtml);
+          }
+          else {
+            $.each($('element').contents(), function(index, content) {
+              if(content.nodeType == 3) { // nodeType == 3 means it is not a child node
+                $(content).html($(content).html().replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>"));
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+};
+
 DomElement = {
   matchingTerm: 'table.matching-term'
 };
@@ -49,24 +72,7 @@ function addToResultTable(result, searchTerms){
   var table = $('.matching-term');
   var lastChild = table.find('tr:last');
 
-  $.each(searchTerms.split(' '), function(index, term) {
-    if(term.length > 0 ) {
-      $.each(result.find('td'), function(index, element) {
-        if ($(element).find('span').length == 0){
-          var existingHtml = $(element).html();
-          var replacedHtml = existingHtml.replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>");
-          $(element).html(replacedHtml);
-        }
-        else {
-          $.each($('element').contents(), function(index, content) {
-            if(content.nodeType == 3) {
-              $(content).html($(content).html().replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>"));
-            }
-          });
-        }
-      });
-    }
-  });
+  Highlighter.highlight(result, searchTerms);
 
   if(lastChild.length == 0) {
     table.html(result);
