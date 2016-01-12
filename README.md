@@ -51,9 +51,17 @@ With the Engine mounted at `/passages`, the rendered page will display a search 
 
 Since there are no environment dependent checks, the `/passages` page uses configurable http basic authentication.
 
-Default username: **username**
+To set a `username` and `password` in the `Passages` Engine, add an `ENV` variable for each value.
 
-Default password: **password**
+`ENV['passages_username']` should be the desired `username` and `ENV['passages_password']` should be the desired `password`
+
+By default these values are:
+
+username: **username**
+
+password: **password**
+
+`ENV` variables can prefix a Ruby server command from the command line interface, set with a helper `.ENV` file for systems like `foreman` or set through a web interface on platforms like `heroku`.
 
 ## Contributing
 
