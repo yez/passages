@@ -23,9 +23,29 @@ gem 'passages'
 
 `bundle install`
 
-The `Passages` engine will **prepend** a `/passages` route to the application's routes. This means that if a project's `routes.rb` specifically defines a `/passages` route, the `Passages` Engine will not overwrite that.
+By default, the `Passages` Engine must be mounted in your `routes.rb` file.
 
-Visiting `/passages` will display a search box and list of all known routes in an application.
+Example:
+
+*routes.rb*
+
+```ruby
+Rails.application.routes.draw do
+  mount Passages::Engine, at: '/passages'
+end
+```
+
+*Alternatively*, an initializer can be created that will allow the `Passages` Engine to mount itself.
+
+Create a new file: `initializers/passages.rb` and add the following:
+
+```ruby
+Passages.configure do |config|
+  config.automount = true
+end
+```
+
+With the Engine mounted at `/passages`, the rendered page will display a search box and list of all known routes within the application.
 
 ## Authorization
 

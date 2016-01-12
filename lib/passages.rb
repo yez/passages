@@ -5,6 +5,7 @@ module Passages
 end
 
 require 'initializers/basic_auth'
+require 'config'
 
 if defined? Rails
   require 'passages/engine'
