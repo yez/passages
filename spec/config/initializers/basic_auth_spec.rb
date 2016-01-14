@@ -11,6 +11,18 @@ describe Passages do
       it 'uses the ENV var' do
         expect(described_class.username).to eq(username)
       end
+
+      context 'uppercase' do
+        let(:upper_username) { 'THISISANUPPERUSERNAME' }
+        before do
+          allow(ENV).to receive(:[]).with('passages_username') { nil }
+          allow(ENV).to receive(:[]).with('PASSAGES_USERNAME') { upper_username }
+        end
+
+        it 'uses the ENV var' do
+          expect(described_class.username).to eq(upper_username)
+        end
+      end
     end
 
     context 'when the ENV variable is not set' do
@@ -29,6 +41,18 @@ describe Passages do
 
       it 'uses the ENV var' do
         expect(described_class.password).to eq(password)
+      end
+
+      context 'uppercase' do
+        let(:upper_password) { 'THISISANUPPERPASSWORD' }
+        before do
+          allow(ENV).to receive(:[]).with('passages_password') { nil }
+          allow(ENV).to receive(:[]).with('PASSAGES_PASSWORD') { upper_password }
+        end
+
+        it 'uses the ENV var' do
+          expect(described_class.password).to eq(upper_password)
+        end
       end
     end
 
