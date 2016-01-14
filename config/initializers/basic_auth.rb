@@ -1,10 +1,10 @@
 module Passages
   def username
-    ENV['passages_username'] || 'username'
+    ENV['passages_username'] || ENV['PASSAGES_USERNAME'] || 'username'
   end
 
   def password
-    ENV['passages_password'] || 'password'
+    ENV['passages_password'] || ENV['PASSAGES_PASSWORD'] || 'password'
   end
 
   def no_auth=(no_auth)
