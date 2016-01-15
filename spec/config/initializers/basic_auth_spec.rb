@@ -64,31 +64,26 @@ describe Passages do
   end
 
   describe '.no_auth?' do
-    context '@basic_auth is a truthy value' do
-      [true, 'yes', ['1'], { a: :b }].each do |value|
-        it "#{ value } returns true" do
-          described_class.no_auth = value
-          expect(described_class.no_auth?).to eq(true)
-        end
+    let(:value) { nil }
+
+    before do
+      Passages.config.no_auth = value
+    end
+
+    context 'Passages.config is set to true' do
+      let(:value) { true }
+
+      it 'returns true' do
+        expect(described_class.no_auth?).to eq(true)
       end
     end
 
-    context '@basic_auth is a falsey value' do
-      [false, nil].each do |value|
-        it "#{ value } returns false" do
-          described_class.no_auth = value
-          expect(described_class.no_auth?).to eq(false)
-        end
+    context 'Passages.config is set to false' do
+      let(:value) { false }
+
+      it 'returns false' do
+        expect(described_class.no_auth?).to eq(false)
       end
-    end
-  end
-
-  describe '.no_auth=' do
-    it 'sets the @no_auth var to the passed in value' do
-      value = 'foo'
-      described_class.no_auth = value
-
-      expect(described_class.instance_variable_get(:@no_auth)).to eq(value)
     end
   end
 end
