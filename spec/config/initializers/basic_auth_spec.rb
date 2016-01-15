@@ -62,4 +62,24 @@ describe Passages do
       end
     end
   end
+
+  describe '.no_auth?' do
+    context '@basic_auth is a truthy value' do
+      [true, 'yes', ['1'], { a: :b }].each do |value|
+        it "#{ value } returns true" do
+          described_class.no_auth = value
+          expect(described_class.no_auth?).to eq(true)
+        end
+      end
+    end
+
+    context '@basic_auth is a falsey value' do
+      [false, nil].each do |value|
+        it "#{ value } returns false" do
+          described_class.no_auth = value
+          expect(described_class.no_auth?).to eq(false)
+        end
+      end
+    end
+  end
 end

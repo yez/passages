@@ -12,7 +12,7 @@ module Passages
   end
 
   def no_auth?
-    @no_auth.nil? || @no_auth
+    !!@no_auth
   end
 
   module_function :username, :password, :no_auth=, :no_auth?
