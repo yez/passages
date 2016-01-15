@@ -8,6 +8,10 @@ module Passages
           mount Passages::Engine, at: '/passages'
         end
       end
+
+      unless Passages.config.no_auth?
+        Passages::RoutesController.http_basic_authenticate_with name: Passages.username, password: Passages.password
+      end
     end
   end
 end
