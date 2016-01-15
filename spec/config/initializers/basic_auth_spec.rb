@@ -82,4 +82,13 @@ describe Passages do
       end
     end
   end
+
+  describe '.no_auth=' do
+    it 'sets the @no_auth var to the passed in value' do
+      value = 'foo'
+      described_class.no_auth = value
+
+      expect(described_class.instance_variable_get(:@no_auth)).to eq(value)
+    end
+  end
 end
