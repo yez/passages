@@ -62,4 +62,28 @@ describe Passages do
       end
     end
   end
+
+  describe '.no_auth?' do
+    let(:value) { nil }
+
+    before do
+      Passages.config.no_auth = value
+    end
+
+    context 'Passages.config is set to true' do
+      let(:value) { true }
+
+      it 'returns true' do
+        expect(described_class.no_auth?).to eq(true)
+      end
+    end
+
+    context 'Passages.config is set to false' do
+      let(:value) { false }
+
+      it 'returns false' do
+        expect(described_class.no_auth?).to eq(false)
+      end
+    end
+  end
 end
