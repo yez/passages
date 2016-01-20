@@ -63,6 +63,14 @@ password: **password**
 
 `ENV` variables can prefix a Ruby server command from the command line interface, set with a helper `.ENV` file for systems like `foreman` or set through a web interface on platforms like `heroku`.
 
+To disable authentication, create or add to the `initializers/passages.rb` file:
+
+```ruby
+Passages.configure do |config|
+  config.no_auth = true
+end
+```
+
 ## Contributing
 
 Please feel free to fork and contribute your own changes to the Passages project. Single commits are preferred with a description of why the contribution is useful.
