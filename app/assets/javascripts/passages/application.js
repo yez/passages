@@ -11,7 +11,7 @@ var Highlighter  = {
             $(element).html(replacedHtml);
           }
           else {
-            $.each($('element').contents(), function(index, content) {
+            $.each($(element).contents(), function(index, content) {
               if(content.nodeType == 3) { // nodeType == 3 means it is not a child node
                 $(content).html($(content).html().replace(new RegExp("(" + term + ")", "i"), "<span class='highlighted'>$1</span>"));
               }
