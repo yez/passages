@@ -16,7 +16,9 @@ describe Passages do
         let(:upper_username) { 'THISISANUPPERUSERNAME' }
         before do
           allow(ENV).to receive(:[]).with('passages_username') { nil }
-          allow(ENV).to receive(:[]).with('PASSAGES_USERNAME') { upper_username }
+          allow(ENV).to receive(:[]).with('PASSAGES_USERNAME') do
+            upper_username
+          end
         end
 
         it 'uses the ENV var' do
@@ -47,7 +49,9 @@ describe Passages do
         let(:upper_password) { 'THISISANUPPERPASSWORD' }
         before do
           allow(ENV).to receive(:[]).with('passages_password') { nil }
-          allow(ENV).to receive(:[]).with('PASSAGES_PASSWORD') { upper_password }
+          allow(ENV).to receive(:[]).with('PASSAGES_PASSWORD') do
+            upper_password
+          end
         end
 
         it 'uses the ENV var' do

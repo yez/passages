@@ -3,15 +3,16 @@ require 'action_dispatch/routing/inspector'
 require_relative 'mount_route'
 
 module Passages
+  # Main DelegateClass used for decoration and discerning if a route is
+  #  a "regular" route or a mount route
   class Route < DelegateClass(ActionDispatch::Routing::RouteWrapper)
-
     def initialize(route)
       super(ActionDispatch::Routing::RouteWrapper.new(route))
     end
 
     class << self
       def attributes_for_display
-        %w[name verb controller action path]
+        %w(name verb controller action path)
       end
 
       def from_raw_route(raw_route)
@@ -29,15 +30,19 @@ module Passages
       def mount_route_class(route)
         route_app = route.app
 
-        app = if route_app.class == Class
-          route_app
-        else
-          route_app.try(:app)
-        end
-
-        app if app.ancestors.include?(Rails::Engine)
+        app(route_app) if app(route_app).ancestors.include?(Rails::Engine)
       rescue
         nil
+      end
+
+      def app(route_app)
+        @app ||= begin
+          if route_app.class == Class
+            route_app
+          else
+            route_app.try(:app)
+          end
+        end
       end
     end
   end

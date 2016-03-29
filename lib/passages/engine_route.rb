@@ -1,6 +1,7 @@
 require 'active_support/core_ext'
 
 module Passages
+  # DelegateClass of internal RouteWrapper class within ActionDispatch
   class EngineRoute < DelegateClass(ActionDispatch::Routing::RouteWrapper)
     attr_reader :engine_name
 

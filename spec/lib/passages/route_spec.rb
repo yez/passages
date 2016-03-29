@@ -42,7 +42,9 @@ module Passages
 
     describe '.from_raw_route' do
       let(:raw_route) { anything }
-      before { allow(described_class).to receive(:mount_route_class) { mount_class } }
+      before do
+        allow(described_class).to receive(:mount_route_class) { mount_class }
+      end
 
       context 'mount class is present' do
         let(:mount_class) { anything }

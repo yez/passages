@@ -13,10 +13,14 @@ module Passages
         allow(fake_route).to receive(:internal?) { false }
       end
 
-      subject { described_class.new([{engine: engine_name, routes: [fake_route]}]) }
+      subject do
+        described_class.new([{ engine: engine_name, routes: [fake_route] }])
+      end
 
       it 'adds the engine name to each route' do
-        expect(subject.routes.all? { |route| route[:engine] == engine_name }).to eq(true)
+        expect(subject.routes).to be_all do |route|
+          route[:engine] == engine_name
+        end
       end
 
       context 'all an engine\'s routes are internal' do
@@ -27,13 +31,19 @@ module Passages
       end
 
       context 'only some of an engine\'s routes are internal' do
-        let(:another_fake_route) { instance_double(EngineRoute, internal?: false) }
-        let(:routes) { [fake_route, another_fake_route]}
-        subject { described_class.new([{engine: engine_name, routes: routes }]) }
+        subject do
+          described_class.new([{ engine: engine_name, routes: routes }])
+        end
+        let(:another_fake_route) do
+          instance_double(EngineRoute, internal?: false)
+        end
+        let(:routes) { [fake_route, another_fake_route] }
 
         it 'adds the engine to the ivar' do
           expect(subject.routes).to_not be_empty
-          expect(subject.routes.all? { |r| r[:engine] == engine_name }).to eq(true)
+          expect(subject.routes).to be_all do |r|
+            r[:engine] == engine_name
+          end
           expect(subject.routes.first[:routes]).to eq(routes)
         end
       end

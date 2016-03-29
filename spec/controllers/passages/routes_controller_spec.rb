@@ -7,7 +7,6 @@ require_relative '../../../app/controllers/passages/routes_controller'
 
 module Passages
   describe RoutesController do
-
     describe '#routes' do
       before do
         allow(subject).to receive(:application_routes) { anything }
@@ -38,7 +37,10 @@ module Passages
 
     describe '!#passages_rails_routes' do
       it 'calls deep into the Rails routes' do
-        expect(Rails).to receive_message_chain(:application, :routes, :routes) { [] }
+        expect(Rails)
+          .to receive_message_chain(:application, :routes, :routes) do
+            []
+          end
         subject.send(:passages_rails_routes)
       end
     end

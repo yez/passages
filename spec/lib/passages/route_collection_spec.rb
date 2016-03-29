@@ -6,7 +6,9 @@ module Passages
     let(:fake_route) { instance_double(Passages::Route) }
 
     before do
-      allow_any_instance_of(described_class).to receive(:main_app_name) { 'SomeGreatApp' }
+      allow_any_instance_of(described_class).to receive(:main_app_name) do
+        'SomeGreatApp'
+      end
       allow(fake_route).to receive(:internal?) { false }
     end
 
@@ -34,7 +36,7 @@ module Passages
 
         context 'internal and external routes exist' do
           let(:another_fake_route) { instance_double(Passages::Route) }
-          subject { described_class.new([fake_route, another_fake_route])}
+          subject { described_class.new([fake_route, another_fake_route]) }
 
           before do
             allow(another_fake_route).to receive(:internal?) { false }

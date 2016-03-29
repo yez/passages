@@ -1,6 +1,7 @@
 $LOAD_PATH << File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH << File.dirname(__FILE__) + '/../config'
 
+# Define the Passages namespace module
 module Passages
 end
 
