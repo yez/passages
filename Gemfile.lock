@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    passages (1.4.0)
+    passages (1.4.1)
       rails (~> 4.0)
 
 GEM
