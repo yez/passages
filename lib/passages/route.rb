@@ -28,20 +28,18 @@ module Passages
       private
 
       def mount_route_class(route)
-        route_app = route.app
+        klass = app_class(route.app)
 
-        app(route_app) if app(route_app).ancestors.include?(Rails::Engine)
+        klass if klass.ancestors.include?(Rails::Engine)
       rescue
         nil
       end
 
-      def app(route_app)
-        @app ||= begin
-          if route_app.class == Class
-            route_app
-          else
-            route_app.try(:app)
-          end
+      def app_class(route_app)
+        if route_app.class == Class
+          route_app
+        else
+          route_app.try(:app)
         end
       end
     end
