@@ -1,6 +1,6 @@
 <tr>
   <% Passages::Route.attributes_for_display.each do |attribute| %>
-    <td data-search='<%= route.send(attribute).downcase %>' data-matching-attribute='<%=attribute%>'>
+    <td data-search='<%= route.send(attribute).try(:downcase) %>' data-matching-attribute='<%=attribute%>'>
       <%= route.send(attribute) %>
     </td>
   <% end %>

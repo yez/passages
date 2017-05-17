@@ -6,13 +6,15 @@ module Passages
   # Main DelegateClass used for decoration and discerning if a route is
   #  a "regular" route or a mount route
   class Route < DelegateClass(ActionDispatch::Routing::RouteWrapper)
+    ATTRIBUTES_FOR_DISPLAY = %w(name verb controller action path).freeze
+
     def initialize(route)
       super(ActionDispatch::Routing::RouteWrapper.new(route))
     end
 
     class << self
       def attributes_for_display
-        %w(name verb controller action path)
+        ATTRIBUTES_FOR_DISPLAY
       end
 
       def from_raw_route(raw_route)

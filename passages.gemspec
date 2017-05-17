@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = s.files.grep(%r{^spec/})
 
-  s.required_ruby_version = '>= 2.0.0'
-  s.add_dependency 'rails', '~> 4.0'
+  s.required_ruby_version = '>= 2.2.2'
+  s.add_dependency 'rails', '~> 5.0'
 
   s.add_development_dependency 'rspec', '~> 3.2'
   s.add_development_dependency 'rubocop', '0.39.0'
