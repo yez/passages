@@ -47,6 +47,11 @@ end
 
 With the Engine mounted at `/passages`, the rendered page will display a search box and list of all known routes within the application.
 
+### Rails 5 and Above
+
+Rails 5 apps should use version 2.0 of this gem, everyone below should use
+1.5.2
+
 ## Authorization
 
 Since there are no environment dependent checks, the `/passages` page uses configurable http basic authentication.
