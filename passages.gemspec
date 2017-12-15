@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/yez/passages'
   s.license       = 'MIT'
 
-  s.require_paths = %w(lib app)
+  s.require_paths = %w[lib app]
   s.files         = `git ls-files`.split("\n")
   s.test_files    = s.files.grep(%r{^spec/})
 
@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 5.0'
 
   s.add_development_dependency 'rspec', '~> 3.2'
-  s.add_development_dependency 'rubocop', '0.39.0'
+  s.add_development_dependency 'rubocop', '0.49.0'
 end

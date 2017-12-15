@@ -8,7 +8,7 @@ module Passages
     # Necessary for rake assets:precompile in a main application
     #  to compile this Engine's assets as well
     initializer 'passages.assets.precompile' do |app|
-      app.config.assets.precompile += %w(application.css application.js)
+      app.config.assets.precompile += %w[application.css application.js]
     end
 
     # Optionally mount the /passages route at an applications top
@@ -25,7 +25,8 @@ module Passages
       unless Passages.config.no_auth?
         Passages::RoutesController.http_basic_authenticate_with(
           name: Passages.username,
-          password: Passages.password)
+          password: Passages.password
+        )
       end
     end
   end

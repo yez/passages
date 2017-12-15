@@ -1,0 +1,6 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'

@@ -18,7 +18,7 @@ module Passages
       end
     end
 
-    [:internal?, :path].each do |method|
+    %i[internal? path].each do |method|
       describe "##{method}" do
         it "responds to #{method}" do
           expect(subject).to respond_to(method)
