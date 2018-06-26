@@ -12,8 +12,11 @@ module Passages
 
     def routes
       @routes = application_routes
-      @engine_routes = engine_routes
       @mount_routes = mount_routes
+      mounted_engines = @mount_routes.keys
+      @engine_routes = engine_routes.select do |r|
+        mounted_engines.include?(r[:engine])
+      end
     end
 
     private
