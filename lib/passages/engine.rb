@@ -8,7 +8,7 @@ module Passages
     # Necessary for rake assets:precompile in a main application
     #  to compile this Engine's assets as well
     initializer 'passages.assets.precompile' do |app|
-      app.config.assets.precompile += %w[application.css application.js]
+      app.config.assets.precompile += %w[passages/application.css passages/application.js]
     end
 
     # Optionally mount the /passages route at an applications top
