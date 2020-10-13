@@ -122,7 +122,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.3.1)
+    rake (13.0.1)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
